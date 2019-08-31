@@ -6,7 +6,7 @@ type BaseMessage struct {
 	Type    string `json:"type"`
 }
 
-func NewBaseMessage(message string, msg_type string) BaseMessage {
-	baseMessage := BaseMessage{message, msg_type}
+func NewMessage(message string, msgType string) BaseMessage {
+	baseMessage := BaseMessage{message, msgType}
 	return baseMessage
 }
