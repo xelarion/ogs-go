@@ -1,4 +1,4 @@
-package api_response
+package go_rsp
 
 // 消息
 type BaseMessage struct {
@@ -6,14 +6,7 @@ type BaseMessage struct {
 	Type    string `json:"type"`
 }
 
-var msgTypes = [4]string{"info", "success", "warning", "error"}
-
 func NewBaseMessage(message string, msg_type string) BaseMessage {
 	baseMessage := BaseMessage{message, msg_type}
 	return baseMessage
-}
-
-// 验证 message type 是否合法
-func verifyMsgType(msg_type string) {
-	msgTypes
 }

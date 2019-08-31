@@ -1,6 +1,5 @@
-package api_response
+package go_rsp
 
-// 基础返回格式
 /**
 {
   message: {
@@ -10,14 +9,13 @@ package api_response
   code: 0,
   data: null
 }
- */
+*/
 type BaseResponse struct {
 	Message BaseMessage `json:"message"`
-	Code int `json:"code"`
-	Data interface{} `json:"data"`
+	Code    int         `json:"code"`
+	Data    interface{} `json:"data"`
 }
 
-// 带分页的返回格式
 /**
 {
   message: {
@@ -39,11 +37,7 @@ type PaginateResponse struct {
 	Paginate BasePaginate `json:"paginate"`
 }
 
-func (br BaseResponse) Success() bool {
-	return br.Code == 0 && br.Message.Type == "success"
-}
-
-// 返回基础数据格式
+// response base format
 func RspBaseData(data interface{}, code int, baseMessage BaseMessage) interface{} {
 	baseResponse := BaseResponse{}
 	baseResponse.Data = data
@@ -52,9 +46,12 @@ func RspBaseData(data interface{}, code int, baseMessage BaseMessage) interface{
 	return baseResponse
 }
 
-// 返回分页数据格式
-func RspPagData(data interface{}, ) interface{} {
+// response base format with paginate
+func RspPagData(data interface{}, code int, baseMessage BaseMessage, basePaginate BasePaginate) interface{} {
 	paginateResponse := PaginateResponse{}
 	paginateResponse.Data = data
+	paginateResponse.Code = code
+	paginateResponse.Message = baseMessage
+	paginateResponse.Paginate = basePaginate
 	return paginateResponse
 }
