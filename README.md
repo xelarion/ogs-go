@@ -30,3 +30,26 @@ RspPagData:
   }
 }
 ```
+
+default code:
+
+```
+OK = 0
+
+// authorization
+StatusUnauthorized = 10001
+StatusTokenExpired = 10002
+StatusInvalidToken = 10003
+
+// users
+StatusUserNotFound  = 20001
+StatusErrorPassword = 20002
+
+// crud
+StatusCreateFailed       = 30001
+StatusUpdateFailed       = 30002
+StatusDestroyFailed      = 30003
+StatusBatchCreateFailed  = 30004
+StatusBatchUpdateFailed  = 30005
+StatusBatchDestroyFailed = 30006
+```
