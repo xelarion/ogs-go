@@ -1,4 +1,4 @@
-package go_rsp
+package gorsp
 
 const (
 	OK = 0

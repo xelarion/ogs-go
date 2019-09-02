@@ -1,4 +1,4 @@
-package go_rsp
+package gorsp
 
 // 消息
 type BaseMessage struct {
