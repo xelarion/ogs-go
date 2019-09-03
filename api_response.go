@@ -76,7 +76,6 @@ func RspOKWithData(message BaseMessage, data interface{}) interface{} {
 	return RspBaseWithData(StatusOK, message, data)
 }
 
-// response base format with paginate
 /**
 {
   message: {

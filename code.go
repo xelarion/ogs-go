@@ -22,7 +22,7 @@ const (
 )
 
 var codeText = map[int]string{
-	OK: "OK",
+	StatusOK: "OK",
 
 	StatusUnauthorized: "Unauthorized",
 	StatusTokenExpired: "Token Expired",
