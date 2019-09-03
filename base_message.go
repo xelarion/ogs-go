@@ -9,3 +9,8 @@ func NewMessage(message string, msgType string) BaseMessage {
 	baseMessage := BaseMessage{message, msgType}
 	return baseMessage
 }
+
+func BlankMessage() BaseMessage {
+	baseMessage := BaseMessage{"", ""}
+	return baseMessage
+}
