@@ -1,6 +1,5 @@
 package gorsp
 
-// 消息
 type BaseMessage struct {
 	Message string `json:"message"`
 	Type    string `json:"type"`

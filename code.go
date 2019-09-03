@@ -1,7 +1,7 @@
 package gorsp
 
 const (
-	OK = 0
+	StatusOK = 0
 
 	// authorization
 	StatusUnauthorized = 10001

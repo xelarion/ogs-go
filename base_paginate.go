@@ -2,7 +2,6 @@ package gorsp
 
 import "math"
 
-// 分页
 type BasePaginate struct {
 	CurrentPage int `json:"current_page"`
 	TotalPages  int `json:"total_pages"`

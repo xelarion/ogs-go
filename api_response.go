@@ -1,5 +1,67 @@
 package gorsp
 
+type CodeMessage struct {
+	Code    int         `json:"code"`
+	Message BaseMessage `json:"message"`
+}
+
+type CodeMessageData struct {
+	CodeMessage
+	Data interface{} `json:"data"`
+}
+
+type CodeMessageDataWithPag struct {
+	CodeMessageData
+	Paginate BasePaginate `json:"paginate"`
+}
+
+/**
+{
+  message: {
+    message: "",
+    type: ""
+  },
+  code: 10001
+}
+*/
+func RspBase(code int, message BaseMessage) interface{} {
+	codeMessage := CodeMessage{}
+	codeMessage.Code = code
+	codeMessage.Message = message
+	return codeMessage
+}
+
+/**
+{
+  message: {
+    message: "",
+    type: ""
+  },
+  code: 0
+}
+*/
+func RspOK(message BaseMessage) interface{} {
+	return RspBase(StatusOK, message)
+}
+
+/**
+{
+  message: {
+    message: "",
+    type: ""
+  },
+  code: 30001,
+  data: null
+}
+**/
+func RspBaseWithData(code int, message BaseMessage, data interface{}) interface{} {
+	codeMessageData := CodeMessageData{}
+	codeMessageData.Code = code
+	codeMessageData.Message = message
+	codeMessageData.Data = data
+	return codeMessageData
+}
+
 /**
 {
   message: {
@@ -9,11 +71,35 @@ package gorsp
   code: 0,
   data: null
 }
-*/
-type BaseResponse struct {
-	Message BaseMessage `json:"message"`
-	Code    int         `json:"code"`
-	Data    interface{} `json:"data"`
+**/
+func RspOKWithData(message BaseMessage, data interface{}) interface{} {
+	return RspBaseWithData(StatusOK, message, data)
+}
+
+// response base format with paginate
+/**
+{
+  message: {
+    message: "",
+    type: ""
+  },
+  code: 30001,
+  data: null,
+  paginate: {
+    current_page: 0,
+    total_pages: 0,
+    total_count: 0,
+    per_page: 0
+  }
+}
+**/
+func RspBaseWithPaginate(code int, message BaseMessage, data interface{}, basePaginate BasePaginate) interface{} {
+	codeMessageDataWithPag := CodeMessageDataWithPag{}
+	codeMessageDataWithPag.Code = code
+	codeMessageDataWithPag.Message = message
+	codeMessageDataWithPag.Data = data
+	codeMessageDataWithPag.Paginate = basePaginate
+	return codeMessageDataWithPag
 }
 
 /**
@@ -32,26 +118,6 @@ type BaseResponse struct {
   }
 }
 **/
-type PaginateResponse struct {
-	BaseResponse
-	Paginate BasePaginate `json:"paginate"`
-}
-
-// response base format
-func RspBaseData(data interface{}, code int, baseMessage BaseMessage) interface{} {
-	baseResponse := BaseResponse{}
-	baseResponse.Data = data
-	baseResponse.Code = code
-	baseResponse.Message = baseMessage
-	return baseResponse
-}
-
-// response base format with paginate
-func RspPagData(data interface{}, code int, baseMessage BaseMessage, basePaginate BasePaginate) interface{} {
-	paginateResponse := PaginateResponse{}
-	paginateResponse.Data = data
-	paginateResponse.Code = code
-	paginateResponse.Message = baseMessage
-	paginateResponse.Paginate = basePaginate
-	return paginateResponse
+func RspOKWithPaginate(message BaseMessage, data interface{}, basePaginate BasePaginate) interface{} {
+	return RspBaseWithPaginate(StatusOK, message, data, basePaginate)
 }
