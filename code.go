@@ -3,17 +3,16 @@ package ogs
 const (
 	StatusOK = 0
 
-	// system
-	StatusSystemError = 00001
-
 	// authorization
-	StatusUnauthorized = 10001
-	StatusTokenExpired = 10002
-	StatusInvalidToken = 10003
+	StatusUnauthorized  = 10001
+	StatusTokenExpired  = 10002
+	StatusInvalidToken  = 10003
+	StatusUserNotFound  = 10004
+	StatusErrorPassword = 10005
 
-	// users
-	StatusUserNotFound  = 20001
-	StatusErrorPassword = 20002
+	// system and resources
+	StatusSystemError     = 20001
+	StatusResourceExpired = 20002
 
 	// crud
 	StatusCreateFailed       = 30001
@@ -27,14 +26,14 @@ const (
 var codeText = map[int]string{
 	StatusOK: "OK",
 
-	StatusSystemError: "System Error",
-
-	StatusUnauthorized: "Unauthorized",
-	StatusTokenExpired: "Token Expired",
-	StatusInvalidToken: "Invalid Token",
-
+	StatusUnauthorized:  "Unauthorized",
+	StatusTokenExpired:  "Token Expired",
+	StatusInvalidToken:  "Invalid Token",
 	StatusUserNotFound:  "User Not Found",
 	StatusErrorPassword: "Error Password",
+
+	StatusSystemError:     "System Error",
+	StatusResourceExpired: "Resource Expired",
 
 	StatusCreateFailed:       "Create Failed",
 	StatusUpdateFailed:       "Update Failed",
