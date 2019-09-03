@@ -1,4 +1,4 @@
-package gorsp
+package ogs
 
 type CodeMessage struct {
 	Code    int         `json:"code"`

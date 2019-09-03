@@ -1,4 +1,4 @@
-package gorsp
+package ogs
 
 type BaseMessage struct {
 	Message string `json:"message"`

@@ -1,4 +1,4 @@
-package gorsp
+package ogs
 
 const (
 	StatusOK = 0
