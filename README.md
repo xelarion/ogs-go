@@ -1,5 +1,5 @@
-# gorsp
-Standard response format for golang
+# ogs-go
+A well-structured return structure for golang api
 
 RspBase:
 
