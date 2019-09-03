@@ -3,6 +3,9 @@ package ogs
 const (
 	StatusOK = 0
 
+	// system
+	StatusSystemError = 00001
+
 	// authorization
 	StatusUnauthorized = 10001
 	StatusTokenExpired = 10002
@@ -23,6 +26,8 @@ const (
 
 var codeText = map[int]string{
 	StatusOK: "OK",
+
+	StatusSystemError: "System Error",
 
 	StatusUnauthorized: "Unauthorized",
 	StatusTokenExpired: "Token Expired",
