@@ -18,7 +18,7 @@ type CodeMessageDataWithPag struct {
 /**
 {
   message: {
-    message: "",
+    content: "",
     type: ""
   },
   code: 10001
@@ -34,7 +34,7 @@ func RspBase(code int, message BaseMessage) interface{} {
 /**
 {
   message: {
-    message: "",
+    content: "",
     type: ""
   },
   code: 0
@@ -47,7 +47,7 @@ func RspOK(message BaseMessage) interface{} {
 /**
 {
   message: {
-    message: "",
+    content: "",
     type: ""
   },
   code: 30001,
@@ -65,7 +65,7 @@ func RspBaseWithData(code int, message BaseMessage, data interface{}) interface{
 /**
 {
   message: {
-    message: "",
+    content: "",
     type: ""
   },
   code: 0,
@@ -79,7 +79,7 @@ func RspOKWithData(message BaseMessage, data interface{}) interface{} {
 /**
 {
   message: {
-    message: "",
+    content: "",
     type: ""
   },
   code: 30001,
@@ -104,7 +104,7 @@ func RspBaseWithPaginate(code int, message BaseMessage, data interface{}, basePa
 /**
 {
   message: {
-    message: "",
+    content: "",
     type: ""
   },
   code: 0,

@@ -5,7 +5,7 @@ Return a well-structured data format for golang api
  only return code and message
  
 ```go
-import "github.com/ogsapi/ogs-go"
+import "github.com/xandercheung/ogs-go"
 
 func Example() interface{} {
 	return ogs.RspBase(ogs.StatusTokenExpired, ogs.ErrorMessage("Token Expired！"))
@@ -14,7 +14,7 @@ func Example() interface{} {
 /**
 {
   message: {
-    message: "Token Expired！",
+    content: "Token Expired！",
     type: "error"
   },
   code: 10002
