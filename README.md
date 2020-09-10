@@ -88,32 +88,39 @@ func Example() interface{} {
  */
 ```
 
-Response with OK(code is 0)
-#### RspOK(message BaseMessage)
-#### RspOKWithData(message BaseMessage, data interface{})
-#### RspOKWithPaginate(message BaseMessage, data interface{}, basePaginate BasePaginate)
+Response with OK(code is 0 and only pass the message content)
+#### RspOK(messageContent string)
+#### RspOKWithData(messageContent string, data interface{})
+#### RspOKWithPaginate(messageContent string, data interface{}, basePaginate BasePaginate)
+
+Response with Error
+#### RspError(code int, messageContent string)
 
 
 
 default code:
 
-    StatusOK = 0
-    
-    // authorization
-    StatusUnauthorized  = 10001
-    StatusTokenExpired  = 10002
-    StatusInvalidToken  = 10003
-    StatusUserNotFound  = 10004
-    StatusErrorPassword = 10005
+	StatusOK = 0
 
-    // system and resources
-    StatusSystemError     = 20001
-    StatusResourceExpired = 20002
+	// authorization
+	StatusUnauthorized  = 10001
+	StatusTokenExpired  = 10002
+	StatusInvalidToken  = 10003
+	StatusUserNotFound  = 10004
+	StatusErrorPassword = 10005
+	StatusSignInFailed  = 10006
+	StatusSignUpFailed  = 10007
 
-    // crud
-    StatusCreateFailed       = 30001
-    StatusUpdateFailed       = 30002
-    StatusDestroyFailed      = 30003
-    StatusBatchCreateFailed  = 30004
-    StatusBatchUpdateFailed  = 30005
-    StatusBatchDestroyFailed = 30006
+	// system and resources
+	StatusSystemError     = 20001
+	StatusResourceExpired = 20002
+	StatusBadParams       = 20003
+	StatusInvalidRequest  = 20004
+
+	// crud
+	StatusCreateFailed       = 30001
+	StatusUpdateFailed       = 30002
+	StatusDestroyFailed      = 30003
+	StatusBatchCreateFailed  = 30004
+	StatusBatchUpdateFailed  = 30005
+	StatusBatchDestroyFailed = 30006
