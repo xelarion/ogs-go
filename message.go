@@ -6,13 +6,11 @@ type BaseMessage struct {
 }
 
 func NewMessage(content string, msgType string) BaseMessage {
-	baseMessage := BaseMessage{content, msgType}
-	return baseMessage
+	return BaseMessage{content, msgType}
 }
 
 func BlankMessage() BaseMessage {
-	baseMessage := BaseMessage{"", ""}
-	return baseMessage
+	return BaseMessage{"", ""}
 }
 
 func SuccessMessage(content string) BaseMessage {
@@ -29,4 +27,12 @@ func WarningMessage(content string) BaseMessage {
 
 func InfoMessage(content string) BaseMessage {
 	return NewMessage(content, "info")
+}
+
+func blankOrSuccessMessage(content string) BaseMessage {
+	if content == "" {
+		return BlankMessage()
+	} else {
+		return SuccessMessage(content)
+	}
 }

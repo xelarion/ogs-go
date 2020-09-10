@@ -25,10 +25,20 @@ type CodeMessageDataWithPag struct {
 }
 */
 func RspBase(code int, message BaseMessage) interface{} {
-	codeMessage := CodeMessage{}
-	codeMessage.Code = code
-	codeMessage.Message = message
-	return codeMessage
+	return CodeMessage{Code: code, Message: message}
+}
+
+/**
+{
+  message: {
+    content: "Invalid Token",
+    type: "error"
+  },
+  code: 10003
+}
+*/
+func RspError(code int, messageContent string) interface{} {
+	return RspBase(code, ErrorMessage(messageContent))
 }
 
 /**
@@ -40,7 +50,8 @@ func RspBase(code int, message BaseMessage) interface{} {
   code: 0
 }
 */
-func RspOK(message BaseMessage) interface{} {
+func RspOK(messageContent string) interface{} {
+	message := blankOrSuccessMessage(messageContent)
 	return RspBase(StatusOK, message)
 }
 
@@ -72,7 +83,8 @@ func RspBaseWithData(code int, message BaseMessage, data interface{}) interface{
   data: null
 }
 **/
-func RspOKWithData(message BaseMessage, data interface{}) interface{} {
+func RspOKWithData(messageContent string, data interface{}) interface{} {
+	message := blankOrSuccessMessage(messageContent)
 	return RspBaseWithData(StatusOK, message, data)
 }
 
@@ -117,6 +129,7 @@ func RspBaseWithPaginate(code int, message BaseMessage, data interface{}, basePa
   }
 }
 **/
-func RspOKWithPaginate(message BaseMessage, data interface{}, basePaginate BasePaginate) interface{} {
+func RspOKWithPaginate(messageContent string, data interface{}, basePaginate BasePaginate) interface{} {
+	message := blankOrSuccessMessage(messageContent)
 	return RspBaseWithPaginate(StatusOK, message, data, basePaginate)
 }

@@ -9,10 +9,14 @@ const (
 	StatusInvalidToken  = 10003
 	StatusUserNotFound  = 10004
 	StatusErrorPassword = 10005
+	StatusSignInFailed  = 10006
+	StatusSignUpFailed  = 10007
 
 	// system and resources
 	StatusSystemError     = 20001
 	StatusResourceExpired = 20002
+	StatusBadParams       = 20003
+	StatusInvalidRequest  = 20004
 
 	// crud
 	StatusCreateFailed       = 30001
@@ -31,9 +35,13 @@ var codeText = map[int]string{
 	StatusInvalidToken:  "Invalid Token",
 	StatusUserNotFound:  "User Not Found",
 	StatusErrorPassword: "Error Password",
+	StatusSignInFailed:  "Sign In Failed",
+	StatusSignUpFailed:  "Sign Up Failed",
 
 	StatusSystemError:     "System Error",
 	StatusResourceExpired: "Resource Expired",
+	StatusBadParams:       "Bad Params",
+	StatusInvalidRequest:  "Invalid Request",
 
 	StatusCreateFailed:       "Create Failed",
 	StatusUpdateFailed:       "Update Failed",
