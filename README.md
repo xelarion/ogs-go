@@ -88,16 +88,17 @@ func Example() interface{} {
  */
 ```
 
-Response with OK(code is 0 and only pass the message content)
+-----
+### ===== Response with OK(code is 0 and only pass the message content) =====
 #### RspOK(messageContent string)
 #### RspOKWithData(messageContent string, data interface{})
 #### RspOKWithPaginate(messageContent string, data interface{}, basePaginate BasePaginate)
 
-Response with Error
+### ===== Response with Error =====
 #### RspError(code int, messageContent string)
 
 
-
+-----
 default code:
 
 	StatusOK = 0
