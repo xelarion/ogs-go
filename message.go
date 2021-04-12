@@ -1,38 +1,38 @@
 package ogs
 
-type BaseMessage struct {
+type message struct {
 	Content string `json:"content"`
 	Type    string `json:"type"`
 }
 
-func NewMessage(content string, msgType string) BaseMessage {
-	return BaseMessage{content, msgType}
+func NewMsg(content string, msgType string) message {
+	return message{content, msgType}
 }
 
-func BlankMessage() BaseMessage {
-	return BaseMessage{"", ""}
+func BlankMsg() message {
+	return message{"", ""}
 }
 
-func SuccessMessage(content string) BaseMessage {
-	return NewMessage(content, "success")
+func InfoMsg(content string) message {
+	return NewMsg(content, "info")
 }
 
-func ErrorMessage(content string) BaseMessage {
-	return NewMessage(content, "error")
+func SuccessMsg(content string) message {
+	return NewMsg(content, "success")
 }
 
-func WarningMessage(content string) BaseMessage {
-	return NewMessage(content, "warning")
+func WarningMsg(content string) message {
+	return NewMsg(content, "warning")
 }
 
-func InfoMessage(content string) BaseMessage {
-	return NewMessage(content, "info")
+func ErrorMsg(content string) message {
+	return NewMsg(content, "error")
 }
 
-func blankOrSuccessMessage(content string) BaseMessage {
+func blankOrSuccessMsg(content string) message {
 	if content == "" {
-		return BlankMessage()
+		return BlankMsg()
 	} else {
-		return SuccessMessage(content)
+		return SuccessMsg(content)
 	}
 }

@@ -1,135 +1,54 @@
 package ogs
 
-type CodeMessage struct {
-	Code    int         `json:"code"`
-	Message BaseMessage `json:"message"`
+// Rsp return code and message
+func Rsp(code interface{}, message message) interface{} {
+	return codeMessage{Code: code, Message: message}
 }
 
-type CodeMessageData struct {
-	CodeMessage
-	Data interface{} `json:"data"`
+// RspData return code, message and data
+func RspData(code interface{}, message message, data interface{}) interface{} {
+	r := codeMsgData{}
+	r.Code = code
+	r.Message = message
+	r.Data = data
+	return r
 }
 
-type CodeMessageDataWithPag struct {
-	CodeMessageData
-	Paginate BasePaginate `json:"paginate"`
+// RspDataPag return code, message and data with pagination
+func RspDataPag(code interface{}, message message, data interface{}, pag paginate) interface{} {
+	r := codeMsgDataWithPag{}
+	r.Code = code
+	r.Message = message
+	r.Data = data
+	r.Paginate = pag
+	return r
 }
 
-/**
-{
-  message: {
-    content: "",
-    type: ""
-  },
-  code: 10001
-}
-*/
-func RspBase(code int, message BaseMessage) interface{} {
-	return CodeMessage{Code: code, Message: message}
+// RspOK return +CodeOK+ code and message
+func RspOK(msgContent string) interface{} {
+	return Rsp(CodeOK, blankOrSuccessMsg(msgContent))
 }
 
-/**
-{
-  message: {
-    content: "Invalid Token",
-    type: "error"
-  },
-  code: 10003
-}
-*/
-func RspError(code int, messageContent string) interface{} {
-	return RspBase(code, ErrorMessage(messageContent))
+// RspError return error code and message
+func RspError(code interface{}, msgContent string) interface{} {
+	return Rsp(code, ErrorMsg(msgContent))
 }
 
-/**
-{
-  message: {
-    content: "",
-    type: ""
-  },
-  code: 0
-}
-*/
-func RspOK(messageContent string) interface{} {
-	message := blankOrSuccessMessage(messageContent)
-	return RspBase(StatusOK, message)
+// RspDataOK return +CodeOK+ code, message and data
+func RspDataOK(msgContent string, data interface{}) interface{} {
+	return RspData(
+		CodeOK,
+		blankOrSuccessMsg(msgContent),
+		data,
+	)
 }
 
-/**
-{
-  message: {
-    content: "",
-    type: ""
-  },
-  code: 30001,
-  data: null
-}
-**/
-func RspBaseWithData(code int, message BaseMessage, data interface{}) interface{} {
-	codeMessageData := CodeMessageData{}
-	codeMessageData.Code = code
-	codeMessageData.Message = message
-	codeMessageData.Data = data
-	return codeMessageData
-}
-
-/**
-{
-  message: {
-    content: "",
-    type: ""
-  },
-  code: 0,
-  data: null
-}
-**/
-func RspOKWithData(messageContent string, data interface{}) interface{} {
-	message := blankOrSuccessMessage(messageContent)
-	return RspBaseWithData(StatusOK, message, data)
-}
-
-/**
-{
-  message: {
-    content: "",
-    type: ""
-  },
-  code: 30001,
-  data: null,
-  paginate: {
-    current_page: 0,
-    total_pages: 0,
-    total_count: 0,
-    per_page: 0
-  }
-}
-**/
-func RspBaseWithPaginate(code int, message BaseMessage, data interface{}, basePaginate BasePaginate) interface{} {
-	codeMessageDataWithPag := CodeMessageDataWithPag{}
-	codeMessageDataWithPag.Code = code
-	codeMessageDataWithPag.Message = message
-	codeMessageDataWithPag.Data = data
-	codeMessageDataWithPag.Paginate = basePaginate
-	return codeMessageDataWithPag
-}
-
-/**
-{
-  message: {
-    content: "",
-    type: ""
-  },
-  code: 0,
-  data: null,
-  paginate: {
-    current_page: 0,
-    total_pages: 0,
-    total_count: 0,
-    per_page: 0
-  }
-}
-**/
-func RspOKWithPaginate(messageContent string, data interface{}, basePaginate BasePaginate) interface{} {
-	message := blankOrSuccessMessage(messageContent)
-	return RspBaseWithPaginate(StatusOK, message, data, basePaginate)
+// RspDataPagOK return +CodeOK+ code, message and data with pagination
+func RspDataPagOK(msgContent string, data interface{}, pag paginate) interface{} {
+	return RspDataPag(
+		CodeOK,
+		blankOrSuccessMsg(msgContent),
+		data,
+		pag,
+	)
 }

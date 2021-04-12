@@ -1,127 +1,94 @@
 # ogs-go
+
 Return a well-structured data format for golang api
 
-#### RspBase(code int, message BaseMessage):
- only return code and message
- 
+### `Rsp(code interface{}, message message)`
+
 ```go
-import "github.com/xandercheung/ogs-go"
+package main
 
-func Example() interface{} {
-	return ogs.RspBase(ogs.StatusTokenExpired, ogs.ErrorMessage("Token Expired！"))
-}
+import (
+	"encoding/json"
+	"fmt"
+	"github.com/xandercheung/ogs-go"
+)
 
-/**
-{
-  message: {
-    content: "Token Expired！",
-    type: "error"
-  },
-  code: 10002
-}
- */
-```
-
-#### RspBaseWithData(code int, message BaseMessage, data interface{}):
- return code, message and data
- 
-```go
-func Example() interface{} {
-	data := map[string]interface{}{"test": "test"}
-	return ogs.RspBaseWithData(ogs.StatusOK, ogs.BlankMessage(), data)
+func main() {
+	v := ogs.Rsp(0, ogs.NewMsg("this is a message", "success"))
+	b, _ := json.Marshal(v)
+	fmt.Println(string(b))
 }
 
 /**
 {
     "code": 0,
     "message": {
-        "message": "",
-        "type": ""
-    },
-    "data": {
-        "test": "test"
+        "content": "this is a message",
+        "type": "success"
     }
 }
- */
+*/
+
+```
+### `RspData(code interface{}, message message, data interface{})`
+
+```go
+ogs.RspData(
+    "1001",
+    ogs.WarningMsg("this is a warning message"),
+    map[string]interface{}{"key": "value"},
+)
+/**
+{
+    "code": "1001",
+    "message": {
+        "content": "this is a warning message",
+        "type": "warning"
+    },
+    "data": {
+        "key": "value"
+    }
+}
+*/
 ```
 
-#### RspBaseWithPaginate(code int, message BaseMessage, data interface{}, basePaginate BasePaginate):
- return code, message, data and Paginate
- 
-```go
-func Example() interface{} {
-	var users []User
-    count := 0
-    db.Find(&users).Count(&count)
+### `RspDataPag(code interface{}, message message, data interface{}, pag paginate)`
 
-    return ogs.RspBaseWithPaginate(
-        ogs.StatusOK,
-        ogs.BlankMessage(),
-        users,
-        ogs.NewPaginate(1, count, 10))
-}
+```go
+ogs.RspDataPag(
+    "0",
+    ogs.InfoMsg("this is a info message"),
+    []string{"1", "2"},
+    ogs.NewPag(1, 10, 2),
+)
 
 /**
 {
-    "code": 0,
+    "code": "0",
     "message": {
-        "message": "",
-        "type": ""
+        "content": "this is a info message",
+        "type": "info"
     },
     "data": [
-        {
-            "email": "admin@test.com",
-            "nickname": "admin"
-        },
-        {
-            "email": "test@test.com",
-            "nickname": "test"
-        }
+        "1",
+        "2"
     ],
     "paginate": {
         "current_page": 1,
-        "total_pages": 1,
-        "total_count": 3,
-        "per_page": 10
+        "total_pages": 5,
+        "total_count": 10,
+        "per_page": 2
     }
 }
- */
+*/
 ```
 
 -----
-### ===== Response with OK(code is 0 and only pass the message content) =====
-#### RspOK(messageContent string)
-#### RspOKWithData(messageContent string, data interface{})
-#### RspOKWithPaginate(messageContent string, data interface{}, basePaginate BasePaginate)
 
-### ===== Response with Error =====
-#### RspError(code int, messageContent string)
-
-
------
-default code:
-
-	StatusOK = 0
-
-	// authorization
-	StatusUnauthorized  = 10001
-	StatusTokenExpired  = 10002
-	StatusInvalidToken  = 10003
-	StatusUserNotFound  = 10004
-	StatusErrorPassword = 10005
-	StatusSignInFailed  = 10006
-	StatusSignUpFailed  = 10007
-
-	// system and resources
-	StatusSystemError     = 20001
-	StatusResourceExpired = 20002
-	StatusBadParams       = 20003
-	StatusInvalidRequest  = 20004
-
-	// crud
-	StatusCreateFailed       = 30001
-	StatusUpdateFailed       = 30002
-	StatusDestroyFailed      = 30003
-	StatusBatchCreateFailed  = 30004
-	StatusBatchUpdateFailed  = 30005
-	StatusBatchDestroyFailed = 30006
+### other methods
+```go
+RspOK(msgContent string)
+RspError(code interface{}, msgContent string)
+RspDataOK(msgContent string, data interface{})
+RspDataPagOK(msgContent string, data interface{}, pag paginate)
+```
