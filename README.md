@@ -2,7 +2,7 @@
 
 Easier to get a consistent structure
 
-##### `Rsp(code interface{}, message message)`
+##### `RspOK(msgContent string)`
 
 ```go
 package main
