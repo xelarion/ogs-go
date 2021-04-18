@@ -12,8 +12,8 @@ type codeMsgData struct {
 	Data interface{} `json:"data"`
 }
 
-// code, message, data, paginate
+// code, message, data, pagination
 type codeMsgDataWithPag struct {
 	codeMsgData
-	Paginate paginate `json:"paginate"`
+	Pagination pagination `json:"pagination"`
 }

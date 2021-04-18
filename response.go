@@ -15,12 +15,12 @@ func RspData(code interface{}, message message, data interface{}) interface{} {
 }
 
 // RspDataPag return code, message and data with pagination
-func RspDataPag(code interface{}, message message, data interface{}, pag paginate) interface{} {
+func RspDataPag(code interface{}, message message, data interface{}, pag pagination) interface{} {
 	r := codeMsgDataWithPag{}
 	r.Code = code
 	r.Message = message
 	r.Data = data
-	r.Paginate = pag
+	r.Pagination = pag
 	return r
 }
 
@@ -44,7 +44,7 @@ func RspDataOK(msgContent string, data interface{}) interface{} {
 }
 
 // RspDataPagOK return +CodeOK+ code, message and data with pagination
-func RspDataPagOK(msgContent string, data interface{}, pag paginate) interface{} {
+func RspDataPagOK(msgContent string, data interface{}, pag pagination) interface{} {
 	return RspDataPag(
 		CodeOK,
 		blankOrSuccessMsg(msgContent),

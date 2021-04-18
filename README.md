@@ -69,7 +69,7 @@ ogs.RspData(
 */
 ```
 
-#### `RspDataPag(code interface{}, message message, data interface{}, pag paginate)`
+#### `RspDataPag(code interface{}, message message, data interface{}, pag pagination)`
 
 ```go
 ogs.RspDataPag(
@@ -90,7 +90,7 @@ ogs.RspDataPag(
         "1",
         "2"
     ],
-    "paginate": {
+    "pagination": {
         "current_page": 1,
         "total_pages": 5,
         "total_count": 10,
@@ -113,5 +113,5 @@ ogs.ChangeOKCode("200")
 ```go
 RspError(code interface{}, msgContent string)
 RspDataOK(msgContent string, data interface{})
-RspDataPagOK(msgContent string, data interface{}, pag paginate)
+RspDataPagOK(msgContent string, data interface{}, pag pagination)
 ```
