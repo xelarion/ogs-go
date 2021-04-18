@@ -2,7 +2,7 @@ package ogs
 
 type CodeMsg struct {
 	Code    interface{} `json:"code"`
-	Message Message     `json:"Message"`
+	Message Message     `json:"message"`
 }
 
 type CodeMsgData struct {
@@ -12,5 +12,5 @@ type CodeMsgData struct {
 
 type CodeMsgDataWithPag struct {
 	CodeMsgData
-	Pagination Pagination `json:"Pagination"`
+	Pagination Pagination `json:"pagination"`
 }
