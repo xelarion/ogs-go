@@ -1,13 +1,13 @@
 package ogs
 
 // Rsp return code and message
-func Rsp(code interface{}, message message) interface{} {
-	return codeMessage{Code: code, Message: message}
+func Rsp(code interface{}, message Message) interface{} {
+	return CodeMsg{Code: code, Message: message}
 }
 
 // RspData return code, message and data
-func RspData(code interface{}, message message, data interface{}) interface{} {
-	r := codeMsgData{}
+func RspData(code interface{}, message Message, data interface{}) interface{} {
+	r := CodeMsgData{}
 	r.Code = code
 	r.Message = message
 	r.Data = data
@@ -15,8 +15,8 @@ func RspData(code interface{}, message message, data interface{}) interface{} {
 }
 
 // RspDataPag return code, message and data with pagination
-func RspDataPag(code interface{}, message message, data interface{}, pag pagination) interface{} {
-	r := codeMsgDataWithPag{}
+func RspDataPag(code interface{}, message Message, data interface{}, pag Pagination) interface{} {
+	r := CodeMsgDataWithPag{}
 	r.Code = code
 	r.Message = message
 	r.Data = data
@@ -44,7 +44,7 @@ func RspDataOK(msgContent string, data interface{}) interface{} {
 }
 
 // RspDataPagOK return +CodeOK+ code, message and data with pagination
-func RspDataPagOK(msgContent string, data interface{}, pag pagination) interface{} {
+func RspDataPagOK(msgContent string, data interface{}, pag Pagination) interface{} {
 	return RspDataPag(
 		CodeOK,
 		blankOrSuccessMsg(msgContent),

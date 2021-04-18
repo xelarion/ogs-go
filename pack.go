@@ -1,19 +1,16 @@
 package ogs
 
-// code, message
-type codeMessage struct {
+type CodeMsg struct {
 	Code    interface{} `json:"code"`
-	Message message     `json:"message"`
+	Message Message     `json:"Message"`
 }
 
-// code, message, data
-type codeMsgData struct {
-	codeMessage
+type CodeMsgData struct {
+	CodeMsg
 	Data interface{} `json:"data"`
 }
 
-// code, message, data, pagination
-type codeMsgDataWithPag struct {
-	codeMsgData
-	Pagination pagination `json:"pagination"`
+type CodeMsgDataWithPag struct {
+	CodeMsgData
+	Pagination Pagination `json:"Pagination"`
 }

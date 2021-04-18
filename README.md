@@ -31,7 +31,7 @@ func main() {
 
 ```
 
-##### `Rsp(code interface{}, message message)`
+##### `Rsp(code interface{}, message Message)`
 ```go
 ogs.Rsp(1001, ogs.NewMsg("this is a message", "error"))
 
@@ -46,7 +46,7 @@ ogs.Rsp(1001, ogs.NewMsg("this is a message", "error"))
 */
 ```
 
-#### `RspData(code interface{}, message message, data interface{})`
+#### `RspData(code interface{}, message Message, data interface{})`
 
 ```go
 ogs.RspData(
@@ -69,7 +69,7 @@ ogs.RspData(
 */
 ```
 
-#### `RspDataPag(code interface{}, message message, data interface{}, pag pagination)`
+#### `RspDataPag(code interface{}, message Message, data interface{}, pag Pagination)`
 
 ```go
 ogs.RspDataPag(
@@ -113,5 +113,5 @@ ogs.ChangeOKCode("200")
 ```go
 RspError(code interface{}, msgContent string)
 RspDataOK(msgContent string, data interface{})
-RspDataPagOK(msgContent string, data interface{}, pag pagination)
+RspDataPagOK(msgContent string, data interface{}, pag Pagination)
 ```
